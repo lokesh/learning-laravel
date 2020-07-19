@@ -24,3 +24,9 @@ textarea {
 .control {
     margin-bottom: 16px;
 }
+
+
+.danger input,
+.danger textarea {
+    border-color: red;
+}

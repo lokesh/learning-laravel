@@ -9,14 +9,19 @@
         @csrf
         @method('PUT')
 
-        <input type="hidden" name="id" value="{{ $post->id }}" />
-        <div class="control">
+        <div class="control @error('title') danger @enderror">
             <label for="name">Title</label>
             <input type="text" name="title" value="{{ $post->title }}" />
+            @if ($errors->has('title'))
+                {{ $errors->first('title') }}
+            @endif
         </div>
-        <div class="control">
+        <div class="control @error('body') danger @enderror">
             <label for="body">Post</label>
             <textarea name="body">{{ $post->body }}</textarea>
+            @error('body')
+                {{ $errors->first('body') }}
+            @enderror
         </div>
         <button type="submit">Update post</button>
     </form>

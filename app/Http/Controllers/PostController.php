@@ -16,11 +16,9 @@ class PostController extends Controller
             ]);
         }
 
-        public function show($slug)
+        public function show(Post $post)
         {
-            return view('posts.show', [
-                'post' => Post::where('slug', $slug)->firstOrFail()
-            ]);
+            return view('posts.show', ['post' => $post]);
         }
 
         /**
@@ -36,6 +34,11 @@ class PostController extends Controller
          */
         public function store()
         {
+            request()->validate([
+                'title' => ['required', 'min:3'],
+                'body' => 'required'
+            ]);
+
             $post = new Post();
 
             $post->title = request('title');
@@ -50,18 +53,21 @@ class PostController extends Controller
         /**
          * Show a view to edit a resource
          */
-        public function edit($slug) {
-            return view('posts.edit', [
-                'post' => Post::where('slug', $slug)->firstOrFail()
-            ]);
+        public function edit(Post $post) {
+            return view('posts.edit', ['post' => $post]);
         }
 
         /**
          * Persist the edited resource
          */
-        public function update($slug)
+        public function update(Post $post)
         {
-            $post = Post::where('slug', $slug)->firstOrFail();
+
+            request()->validate([
+                'title' => ['required', 'min:3'],
+                'body' => 'required'
+            ]);
+
             $post->title = request('title');
             $post->body = request('body');
             $post->save();
@@ -69,7 +75,9 @@ class PostController extends Controller
             return redirect('/posts/' . $post->slug);
         }
 
-        public function destroy() {
+        public function destroy(Post $post) {
+            $post->delete();
 
+            return redirect('/posts/');
         }
 }
