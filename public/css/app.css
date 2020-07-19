@@ -1,0 +1,27 @@
+body {
+  background: #eee;
+  font-family: Menlo;
+}
+
+form {
+  max-width: 24em;
+}
+
+label {
+  display: block;
+  margin-bottom: 4px;
+}
+
+input {
+  width: 100%;
+}
+
+textarea {
+  width: 100%;
+  height: 5em;
+}
+
+.control {
+  margin-bottom: 16px;
+}
+
