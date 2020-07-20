@@ -29,12 +29,8 @@ Route::put('/posts/{post}', 'PostController@update');
 Route::delete('/posts/{post}', 'PostController@destroy');
 Route::get('/posts/{post}/edit', 'PostController@edit');
 
-
-
-// Route::get('/books', 'BookController@index');
-// Route::get('/books/create', 'BookController@create');
-// Route::get('/books/{book}', 'BookController@show');
-// Route::get('/books/{book}/edit', 'BookController@edit');
-// Route::post('/books', 'BookController@store');
-// Route::put('/books/{book}', 'BookController@update');
-// Route::delete('/books/{book}', 'BookController@destroy');
+// Named routes
+// ---
+// Route::get('/posts/{post}', 'PostController@show')->name('post.show');
+//
+// <a href="{{ route('post.show', $post) }}" />

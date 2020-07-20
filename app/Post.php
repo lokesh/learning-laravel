@@ -35,4 +35,17 @@ class Post extends Model
     {
         return 'slug';
     }
+
+    public function user()
+    {
+        // Elequent will automatically use the func name to compute the id
+        // column to look up. So in this case, it'll look in User for user_id.
+        //
+        // If you want to rename this function to author, it will look for
+        // author_id in the User model. That won't work. So you would need
+        // to specify the id column explicitly in that case:
+        // $this->belongsTo(User::class, 'user_id');
+
+        return $this->belongsTo(User::class);
+    }
 }
